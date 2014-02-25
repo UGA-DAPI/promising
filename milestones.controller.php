@@ -201,7 +201,7 @@ $context = context_module::instance($cm->id);
 				$zip->addEmptyDir($folderName);
 				
 				$fs = get_file_storage();
-				$deliverables = $DB->get_records('promising_deliverable', array('milestoneid' => $milestoneid, 'projectid' => $project->id,'typeelm' => 1), '', 'abstract,localfile,url,id');
+				$deliverables = $DB->get_records('promising_deliverable', array('milestoneid' => $milestoneid, 'projectid' => $project->id,'typeelm' => 1,'groupid' => $currentGroupId), '', 'abstract,localfile,url,id');
 				foreach($deliverables as $deliverable){
 					if($deliverable->localfile){//Si le livrable est un fichier
 						$files = $fs->get_area_files($context->id, 'mod_promising', 'deliverablelocalfile', $deliverable->id, 'sortorder DESC, id ASC', false);
