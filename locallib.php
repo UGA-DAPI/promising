@@ -2756,7 +2756,7 @@ function promising_print_projects_xml($projectgrpid){
 		//$item = new stdClass();
 		$project = $xml->createElement('project');
 		//$user = new stdClass();
-		$titre = $xml->createElement('titre',$rec->name);
+		$titre = $xml->createElement('titre',trim($rec->name));
 		$project->appendChild($titre);
 		//$item->title = format_string($rec->name);
 		//$item->author = fullname($user);//mettre le nom du groupe projet
@@ -2771,11 +2771,11 @@ function promising_print_projects_xml($projectgrpid){
 			$contexttmp = context_module::instance($cmtmp->id);
 			//$item->link = $CFG->wwwroot."/mod/promising/view.php?id=".$contexttmp->id."&view=description";
 			$lien = $CFG->wwwroot."/mod/promising/view.php?id=".$cmtmp->id."&view=description";
-			$lienprojet = $xml->createElement('url',htmlentities($lien));
+			$lienprojet = $xml->createElement('url',trim($lien));
 			$project->appendChild($lienprojet);
 		}
 		$description = $xml->createElement('description');
-		$descriptionData = $xml->createCDATASection($rec->intro);
+		$descriptionData = $xml->createCDATASection(trim($rec->intro));
 		$description->appendChild($descriptionData);
 		$project->appendChild($description);
 		
@@ -2794,7 +2794,7 @@ function promising_print_projects_xml($projectgrpid){
 					//$lienArchive = html_writer::link($url, $file->get_filename());
 					$archive = $xml->createElement('archive');
 					$etape = $xml->createElement('etape',$milestone->abstract);
-					$lienArchive = $xml->createElement('url',htmlentities($url));
+					$lienArchive = $xml->createElement('url',trim($url));
 					$archive->appendChild($etape);
 					$archive->appendChild($lienArchive);
 					$archives->appendChild($archive);
